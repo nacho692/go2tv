@@ -9,6 +9,7 @@ Build = 138
 
 [Android]
 ShareMimeTypes = ["video/*", "audio/*", "image/*", "application/x-bittorrent", "application/x-torrent"]
+ShareSchemes = ["content", "http", "https"]
 MulticastDiscovery = true
 
 [Android.BackgroundService]

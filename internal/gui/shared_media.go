@@ -19,8 +19,24 @@ func isTorrentDocument(uri fyne.URI, mime string) bool {
 	return strings.EqualFold(filepath.Ext(uri.Name()), ".torrent")
 }
 
+// isRemoteMediaURI reports whether uri is a stream another app handed over by
+// URL, e.g. Stremio's external player, rather than a document.
+func isRemoteMediaURI(uri fyne.URI) bool {
+	if uri == nil {
+		return false
+	}
+	switch strings.ToLower(uri.Scheme()) {
+	case "http", "https":
+		return true
+	}
+	return false
+}
+
 // Match Android's registered document types even for explicit intents.
 func acceptSharedURI(uri fyne.URI, mime string) bool {
+	if isRemoteMediaURI(uri) {
+		return !isTorrentDocument(uri, mime)
+	}
 	if uri == nil || !strings.EqualFold(uri.Scheme(), "content") {
 		return false
 	}

@@ -31,6 +31,10 @@ func handleSharedURI(screen *FyneScreen, uri fyne.URI, mime string) {
 	if !acceptSharedURI(uri, mime) {
 		return
 	}
+	if isRemoteMediaURI(uri) {
+		setMobileMediaURL(screen, uri.String())
+		return
+	}
 	if isTorrentDocument(uri, mime) {
 		openMobileTorrentDocument(screen, uri)
 		return

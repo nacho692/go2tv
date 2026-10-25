@@ -22,7 +22,9 @@ func TestSharedMediaRouting(t *testing.T) {
 		{"shared image", "content://documents/42", "image/png", true, false},
 		{"unspecified document", "content://documents/42", "", true, false},
 		{"unsupported document", "content://documents/42", "application/pdf", false, false},
-		{"remote URL", "https://example.org/movie.torrent", "application/x-bittorrent", false, true},
+		{"remote torrent URL", "https://example.org/movie.torrent", "application/x-bittorrent", false, true},
+		{"remote video URL", "http://192.168.1.5:11470/stream/abc", "video/*", true, false},
+		{"remote URL without MIME", "https://example.org/movie.mkv", "", true, false},
 		{"missing URI", "", "application/x-bittorrent", false, false},
 	}
 	for _, tc := range tt {
