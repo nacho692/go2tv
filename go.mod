@@ -165,3 +165,5 @@ require (
 	modernc.org/sqlite v1.60.1 // indirect
 	zombiezen.com/go/sqlite v1.4.2 // indirect
 )
+
+replace github.com/alexballas/refyne/v2 => github.com/nacho692/refyne/v2 v2.8.115-0.20261025233953-02addcf129b4

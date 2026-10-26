@@ -225,6 +225,18 @@ func setMobileMediaURI(screen *FyneScreen, uri fyne.URI) {
 	screen.refreshPlaybackReadiness()
 }
 
+// setMobileMediaURL loads a remote stream the way the Media URL toggle does.
+func setMobileMediaURL(screen *FyneScreen, mediaURL string) {
+	if torrentMediaSelected(screen) {
+		cancelTorrent(screen)
+	}
+	screen.ExternalMediaURL.SetChecked(true)
+	clearsubsAction(screen)
+	screen.MediaText.SetText(mediaURL)
+	screen.mediafile = nil
+	screen.refreshPlaybackReadiness()
+}
+
 func resolveSelectedMobileArtwork(screen *FyneScreen, mediaURI fyne.URI) {
 	identity := mobileGUIArtworkIdentity(mediaURI)
 	screen.setCurrentArtworkTarget(identity)
